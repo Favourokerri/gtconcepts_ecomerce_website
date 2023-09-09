@@ -1,0 +1,83 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+<main>
+  <article>
+
+    <!-- 
+      - #HERO
+    -->
+
+    <section class="hero" id="home" style="background-image: url({% static './images/b2 - Copy.jpg' %})">
+     
+    </section>
+
+      <!--- #PRODUCT
+    -->
+
+    {% if products %}
+    <section class="section product">
+      <div class="container">
+        {% for category in categories %}
+        <h2 class="h2 section-title">{{ category.name }}</h2>
+        <ul class="product-list">
+          {% for product in products %}
+          {% if category in product.categories.all %}
+          <li>
+            <div class="product-card">
+
+              <figure class="card-banner">
+
+                <a href="#">
+                  <img src=" {{ product.image_url }} " %}" alt="Varsi Leather Bag" loading="lazy" width="800"
+                    height="1034" class="w-100">
+                </a>
+
+                <div class="card-badge green"> Hot </div>
+
+                <div class="card-actions">
+
+                  <button class="card-action-btn" aria-label="Quick view">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </button>
+
+                  <button class="card-action-btn cart-btn">
+                    <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
+
+                    <p>Add to Cart</p>
+                  </button>
+
+                  <button class="card-action-btn" aria-label="Add to Wishlist">
+                    <ion-icon name="heart-outline"></ion-icon>
+                  </button>
+
+                </div>
+
+              </figure>
+
+              <div class="card-content">
+                <h3 class="h4 card-title">
+                  <a href="#">{{ product.name }}</a>
+                </h3>
+
+                <div class="card-price">
+                  <data>N{{ product.price}}</data>
+                </div>
+              </div>
+
+            </div>
+          </li>
+          {% endif %}
+          {% endfor %}
+        </ul>
+      
+        {% endfor %}
+
+      </div>
+    </section>
+    {% endif %}
+
+  </article>
+</main>
+{% endblock %}

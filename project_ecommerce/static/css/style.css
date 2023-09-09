@@ -404,7 +404,16 @@ h3 > a { color: inherit; }
   max-width: 12ch;
 }
 
+/* Style the link inside the button */
+.btn-outline a {
+  text-decoration: none;
+  color: black;
+}
 
+/* Change text color to white on hover */
+.btn-outline a:hover {
+  color: white !important;
+}
 
 
 
