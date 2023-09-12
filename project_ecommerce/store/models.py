@@ -24,8 +24,6 @@ class Product(models.Model):
    price = models.DecimalField(max_digits=9,decimal_places=2)
    image_url = models.URLField(null=True, help_text="attach image url from cloudinary")
    is_featured = models.BooleanField(default=False)
-   quantity = models.IntegerField()
-   description = models.TextField()
    created_at = models.DateTimeField(auto_now_add=True)
    updated_at = models.DateTimeField(auto_now=True)
    

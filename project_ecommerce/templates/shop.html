@@ -30,7 +30,7 @@
               <figure class="card-banner">
 
                 <a href="#">
-                  <img src=" {{ product.image_url }} " %}" alt="Varsi Leather Bag" loading="lazy" width="800"
+                  <img src=" {{ product.image_url }}" alt="Varsi Leather Bag" loading="lazy" width="800"
                     height="1034" class="w-100">
                 </a>
 
@@ -42,10 +42,9 @@
                     <ion-icon name="eye-outline"></ion-icon>
                   </button>
 
-                  <button class="card-action-btn cart-btn">
+                  <button value={{ product.id }} class="card-action-btn cart-btn">
                     <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
-
-                    <p>Add to Cart</p>
+                      Add to Cart
                   </button>
 
                   <button class="card-action-btn" aria-label="Add to Wishlist">

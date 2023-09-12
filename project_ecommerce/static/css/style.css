@@ -384,7 +384,7 @@ h3 > a { color: inherit; }
   background-size: cover;
   background-position: left;
   width: 100%;
-  min-height: 40vh;
+  min-height: 80vh;
   padding-block: var(--section-padding);
   display: flex;
   align-items: center;
@@ -404,16 +404,7 @@ h3 > a { color: inherit; }
   max-width: 12ch;
 }
 
-/* Style the link inside the button */
-.btn-outline a {
-  text-decoration: none;
-  color: black;
-}
 
-/* Change text color to white on hover */
-.btn-outline a:hover {
-  color: white !important;
-}
 
 
 

@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.shortcuts import render
-from catalog.models import Product
+from store.models import Product
 # Create your views here.
 
 
