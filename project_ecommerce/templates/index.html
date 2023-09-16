@@ -120,10 +120,18 @@
                     <ion-icon name="eye-outline"></ion-icon>
                   </button>
 
-                  <button value={{ product.id }} class="card-action-btn cart-btn">
-                    <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
-                    Add to Cart
-                  </button>
+                   <!--disaple button base on avalibility status-->
+                   {% if product.avalibility == "i" %}
+                   <button value={{ product.id }} class="card-action-btn cart-btn">
+                     <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
+                       Add to Cart
+                   </button>
+                 {% else %}
+                   <button type="button" disabled class="card-action-btn cart-btn">
+                   <i class="fa-solid fa-calendar-xmark aria-hidden="true""></i>
+                     Opps out of stock
+                   </button>                
+                 {% endif %}
 
                   <button class="card-action-btn" aria-label="Add to Wishlist">
                     <ion-icon name="heart-outline"></ion-icon>
@@ -148,6 +156,11 @@
           {% endif%}
           {% endfor %}
         </ul>
+        {% if featured_products.has_next %}
+        <button class="btn btn-outline" onclick="location.href='?page={{ featured_products.next_page_number }}'">
+            See More
+        </button>
+        {% endif %}
 
         <button class="btn btn-outline" >
           <a href="{% url 'products' %}">View all products </a>

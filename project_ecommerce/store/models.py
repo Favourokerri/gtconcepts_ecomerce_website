@@ -26,6 +26,14 @@ class Product(models.Model):
    is_featured = models.BooleanField(default=False)
    created_at = models.DateTimeField(auto_now_add=True)
    updated_at = models.DateTimeField(auto_now=True)
+
+   avalibility_status = (
+      ('i', 'instock'),
+      ('o', 'out of stock'),
+   )
+
+   avalibility = models.CharField(max_length=30, choices=avalibility_status, default='i', help_text="product avalability" )
+
    
    def __str__(self):
     return self.name 

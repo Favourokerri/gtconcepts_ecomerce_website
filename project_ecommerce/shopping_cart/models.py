@@ -2,6 +2,7 @@ from django.db import models
 import uuid
 from django.contrib.auth.models import User
 from store.models import Product
+from django.utils import timezone
 
 # Create your models here.
 class Cart(models.Model):
@@ -16,6 +17,8 @@ class CartItem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='items')
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name="cartitems")
     quantity = models.IntegerField(default=0)
-
+    created_at = models.DateTimeField(default=timezone.now)  # Set a default value
+    updated_at = models.DateTimeField(auto_now=True)
+   
     def __str__(self):
         return self.product.name

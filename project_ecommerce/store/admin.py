@@ -6,8 +6,8 @@ from store.models import Product
 admin.site.site_header ="GT CONCEPT'S"
 
 class ProductAdmin(admin.ModelAdmin):
-   list_display = ('name', 'price', 'created_at', 'updated_at',)
-   list_filter = ('categories', 'name','created_at', 'updated_at', 'price')
+   list_display = ('name', 'price', 'avalibility', 'created_at', 'updated_at',)
+   list_filter = ('categories', 'avalibility', 'name','created_at', 'updated_at', 'price')
    ordering = ['-created_at']
    prepopulated_fields = {'slug' : ('name',)}
    search_fields = ('name',)  
