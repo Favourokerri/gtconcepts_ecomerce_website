@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block content %}
+{% include 'messages.html'%}
 <main>
   <article>
 
@@ -29,18 +30,12 @@
 
               <figure class="card-banner">
 
-                <a href="#">
                   <img src=" {{ product.image_url }}" alt="Varsi Leather Bag" loading="lazy" width="800"
                     height="1034" class="w-100">
-                </a>
 
                 <div class="card-badge green"> Hot </div>
 
                 <div class="card-actions">
-
-                  <button class="card-action-btn" aria-label="Quick view">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </button>
 
                   <!--disaple button base on avalibility status-->
                   {% if product.avalibility == "i" %}

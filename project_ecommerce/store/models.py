@@ -33,8 +33,7 @@ class Product(models.Model):
    )
 
    avalibility = models.CharField(max_length=30, choices=avalibility_status, default='i', help_text="product avalability" )
-
-   
+       
    def __str__(self):
     return self.name 
    

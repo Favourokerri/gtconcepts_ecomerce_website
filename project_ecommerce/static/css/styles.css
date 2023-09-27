@@ -1262,3 +1262,12 @@
     .footer-bottom .container { justify-content: space-between; }
   
   }
+
+  /********** added this to make productsdisplay double **************/
+  @media (max-width: 768px) {
+    .product-list > li {
+      width: calc(50% - 12.5px);/* Two products on a row */
+    }
+  }
+
+

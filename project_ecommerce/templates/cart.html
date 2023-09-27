@@ -1,0 +1,35 @@
+{% extends 'main.html' %}
+{% load static %}
+  
+
+{% block content %}
+{% if cart_items %}
+    <div class="cart-container">
+  {% for cart_item in cart_items %}
+      <div class="cart-item">
+        <img src="{{ cart_item.product.image_url }}" >
+        <div class="cart-item-details">
+          <div class="cart-item-title">{{ cart_item.product.name }}</div>
+          <div class="cart-item-price">{{ cart_item.total_price }}</div>
+          <div class="cart-item-quantity">
+            Quantity: <span class="quantity">{{ cart_item.quantity }}</span>
+            <button value={{ cart_item.product.id }} class="quantity-button" data-action="decrease">-</button>
+            <button value={{ cart_item.product.id }} class="quantity-button" data-action="increase">+</button>
+          </div>
+          <button value={{ cart_item.product.id }} class="remove-button quantity-button" data-action="remove">Remove</button>
+        </div>
+      </div>
+  {% endfor %}
+      <div class="total">
+        Total: N{{ cart_total }}
+        <button class="checkout-button">Checkout</button>
+      </div>
+    </div>
+{% else %}
+  <div class="center-container">
+    <p class="empty-cart-message">Your cart is empty.</p>
+    <a href="{% url 'products' %}" class="start-shopping-button">Start Shopping</a>
+  </div>
+{% endif %}
+
+{% endblock content %}

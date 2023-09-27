@@ -18,24 +18,49 @@ const csrftoken = getCookie('csrftoken');
 
 
 let btn = document.querySelectorAll(".cart-btn")
-
 btn.forEach(btn=>{
     btn.addEventListener("click", addToCart)
 })
 
-function addToCart(e){
+async function addToCart(e){
     let product_id = e.target.value
-    let url = "/cartadd_to_cart"
+    let url = "/cart/add_to_cart"
     let data = {id:product_id}
     console.log(product_id)
 
-    fetch(url, {
+    await fetch(url, {
         method: "POST",
         headers:{"content-type":"application/json", 'X-CSRFToken': csrftoken},
         body: JSON.stringify(data)
     })
     .then(res=>res.json())
     .then(data=>{
+        location.reload()
         console.log(data)
     })
 }
+
+
+//code for increase, decrease and remove
+const buttons = document.querySelectorAll(".quantity-button");
+buttons.forEach(button => {
+    button.addEventListener("click", function (e) {
+        console.log("Button clicked!");
+        let product_id = e.target.value; // Access the "data-product-id" attribute
+        let url = "/cart/update";
+        let action = this.dataset.action;
+        let data = { id: product_id, action: action };
+        console.log(product_id, action);
+
+        fetch(url, {
+            method: "POST",
+            headers: { "content-type": "application/json", 'X-CSRFToken': csrftoken },
+            body: JSON.stringify(data)
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            location.reload();
+        });
+    });
+});
