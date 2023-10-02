@@ -1,0 +1,50 @@
+/* Updated styles for smaller form with visible border */
+.form-container {
+    background-color: #f2f2f2;
+    border: 1px solid #ccc; /* Added border */
+    border-radius: 10px;
+    padding: 15px; /* Reduced padding */
+    width: 300px; /* Smaller width */
+    margin: 0 auto;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Updated styles for smaller input fields */
+.form-group input[type="text"],
+.form-group input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc; /* Added border */
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+/* Updated styles for smaller submit button */
+.form-group button[type="submit"] {
+    background-color: hsl(148, 45%, 58%);
+    color: #fff;
+    border: none;
+    margin-top: 20px;
+    border-radius: 5px;
+    padding: 8px 16px; /* Smaller padding */
+    font-size: 14px; /* Smaller font size */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Updated styles for smaller login link */
+.login-link {
+    margin-top: 15px; /* Reduced margin-top */
+    text-align: center;
+    font-size: 15px; /* Smaller font size */
+}
+
+/* Media query for responsiveness */
+@media (max-width: 500px) {
+    .form-container {
+        width: 90%;
+    }
+}

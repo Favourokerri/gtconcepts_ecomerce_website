@@ -13,5 +13,7 @@ def index(request):
     """
     featured_products = Product.objects.filter(is_featured=True)
     featured_blogs = Blog_Post.objects.filter(is_featured=True)
-    context = {'featured_products': featured_products, 'featured_blogs': featured_blogs}
+    context = {'featured_products': featured_products,
+               'featured_blogs': featured_blogs}
+
     return render(request, 'index.html', context)

@@ -1,0 +1,26 @@
+{% extends 'main.html' %}
+{% load static %}
+  
+
+{% block content %}
+<div class="form-container">
+    <h1>Sign up</h1>
+    <form>
+        <div class="form-group">
+            <label for="email"><i class="fa-solid fa-envelope"></i> </i> Enter email </label>
+            <input type="text" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="password"><i class="fa-solid fa-key"></i> Enter Password</label>
+            <input type="password" id="password" name="password">
+        </div>
+
+        <div class="form-group">
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+    <div class="login-link">
+        Dont have an account? <a href="{% url 'signup' %}">sing up</a>
+    </div>
+</div>
+{% endblock content %}

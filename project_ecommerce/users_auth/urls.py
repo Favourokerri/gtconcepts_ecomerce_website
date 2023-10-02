@@ -1,7 +1,8 @@
 from django.contrib import admin
 from django.urls import path
-from shopping_cart import views
+from users_auth import views
 
 urlpatterns = [
-    path('user', views.add_to_cart, name="user"),
+    path('signup', views.sing_up, name="signup"),
+    path('login', views.log_in, name='login'),
 ]
