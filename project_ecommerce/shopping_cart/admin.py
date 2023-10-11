@@ -14,6 +14,7 @@ class CartItemAdmin(admin.ModelAdmin):
     list_display = ('product', 'cart', 'quantity', 'total_price', 'user_name', 'updated_at')
     list_filter = ('updated_at', 'cart__user__username')  # Add a filter by user's name
     search_fields = ('cart__user__username', 'cart__id')  # Enable searching by user's name
+    ordering = ('cart__id',)
 
     def user_name(self, obj):
         return obj.cart.user.username

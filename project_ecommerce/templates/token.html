@@ -1,0 +1,12 @@
+{% extends 'main.html' %}
+{% load static %}
+  
+
+{% block content %}
+{% include 'messages.html' %}
+<div style="font-family: Arial, sans-serif; text-align: center; margin-top: 100px;">
+    <p style="font-size: 18px; margin-bottom: 20px;">Your account needs to be validated before you can log in.</p>
+    <a href="{% url 'resend_verification' %}" style="font-size: 16px; color: blue; text-decoration: underline; margin-bottom:50px;">Didn't receive the email? Send again</a>
+</div>
+        
+{% endblock content %}

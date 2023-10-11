@@ -1,0 +1,42 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+{% include 'messages.html'%}
+    <div class="checkout-container">
+        {% include 'messages.html' %}
+        <form method="post" action="{% url 'checkout' %}"> {% csrf_token %}
+        <h1>Checkout</h1>
+        <div class="payment-details">
+            <p>Please transfer the amount to the following account:</p>
+
+            <div class="account-info">
+                <p>Bank Name:</p>
+                <p><strong>Opay</strong></p>
+            </div>
+
+            <div class="account-info">
+                <p>Account Name:</p>
+                <p><strong>Okerri Favour</strong></p>
+            </div>
+
+            <div class="account-info">
+                <p>Account Number:</p>
+                <p><strong>1234-5678-9012-3456</strong></p>
+            </div>
+
+            <div class="amount-info">
+                <p>Amount:</p>
+                <p><strong>$100.00</strong></p>
+            </div>
+        </div>
+        <p style="padding-top: 10px;"><b>Note:</b> only click on the paid button if
+            and only if you have sucessfully maid the payment. misuse of this button
+            will lead to deactivation of your account
+        </p>
+        <a href = {% url 'checkout' %}>
+            <button class="checkout-button">Proceed to Payment</button>
+        </a>
+    </form>
+    </div>
+{% endblock %}

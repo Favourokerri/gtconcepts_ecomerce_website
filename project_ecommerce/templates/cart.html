@@ -22,7 +22,9 @@
   {% endfor %}
       <div class="total">
         Total: N{{ cart_total }}
-        <button class="checkout-button">Checkout</button>
+      <a href={% url 'shipping_details' %}>
+          <button class="checkout-button">Checkout</button>
+      </a>
       </div>
     </div>
 {% else %}

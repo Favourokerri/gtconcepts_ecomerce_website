@@ -35,7 +35,12 @@ async function addToCart(e){
     })
     .then(res=>res.json())
     .then(data=>{
-        location.reload()
+        if (data.success) {
+            location.reload();
+        } else if (data.redirect_url) {
+            location.reload();
+            window.location.href = data.redirect_url;
+        }
         console.log(data)
     })
 }

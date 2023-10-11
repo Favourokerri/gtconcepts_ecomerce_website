@@ -1,0 +1,56 @@
+{% extends 'main.html' %}
+{% load static %}
+  
+
+{% block content %}
+<section class="profile">
+    {% include 'messages.html' %}
+    <div class="user-info">
+        <div class="avatar-container">
+            <img src="{% static './images/profile.jpeg' %}" alt="User Avatar">
+        </div>
+        <div class="user-details">
+            <h2>welcome {{profile.user.first_name}}</h2>
+            <p><b>Email</b>: {{profile.user.email}}</p>
+            <p><b>Address</b>: {{profile.Home_address}}</p>
+            <p><b>Phone_number</b>: {{profile.location}}</p>
+            <p><b>Matriculation number (student loan only)</b>: {{profile.martriculation_number}}</p>
+            <p><b>Phone_number</b>: {{profile.phone_number}}</p>
+            <a href={% url 'edith_profile' %}>
+                <button class="edit-button">Edit Profile</button>
+            </a>
+                <button class="delete-button">Delete Account</button>
+        </div>
+    </div>
+</section>
+
+<section class="order-history">
+    <h2>Order History</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Date</th>
+                <th>Product name</th>
+                <th>Quantity</th>
+                <th>Total Amount</th>
+                <th>Payment status</th>
+                <th>Product Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>001</td>
+                <td>2023-01-15</td>
+                <td>black gene</td>
+                <td>5</td>
+                <td>N150.00</td>
+                <td>Pending</td>
+                <td>Pending</td>
+            </tr>
+            <!-- More order rows here -->
+        </tbody>
+    </table>
+</section>
+
+{% endblock content %}

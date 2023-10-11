@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'store',
     'shopping_cart',
     'users_auth',
+    'user_profile',
+    'checkout',
 ]
 
 MIDDLEWARE = [
@@ -98,6 +100,10 @@ DATABASES = {
         'PASSWORD': config('DATABASE_PASSWORD'),
         'HOST': 'localhost',
         'PORT': '',
+        'OPTIONS': {
+            'charset': 'utf8mb4',
+            'collation': 'utf8mb4_unicode_ci',
+        },
     }
 }
 
@@ -140,6 +146,14 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
+
+#email configurations
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_HOST_USER = "favor.m.white@gmail.com"
+EMAIL_HOST_PASSWORD = "wvbkcsylovnwlhqx"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

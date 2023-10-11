@@ -13,7 +13,7 @@
 }
 
 /* Updated styles for smaller input fields */
-.form-group input[type="text"],
+.form-group input[type="text"],input[type="number"],
 .form-group input[type="password"] {
     width: 100%;
     padding: 8px;

@@ -4,8 +4,9 @@
 
 {% block content %}
 <div class="form-container">
+    {% include 'messages.html' %}
     <h1>Sign up</h1>
-    <form>
+    <form method="POST" action="">{% csrf_token %}
         <div class="form-group">
             <label for="first_name"><i class="fa-solid fa-person"></i> First Name</label>
             <input type="text" id="first_name" name="first_name" required>
