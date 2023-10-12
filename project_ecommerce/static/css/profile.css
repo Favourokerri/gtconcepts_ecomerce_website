@@ -65,11 +65,12 @@
 }
 
 /* Style the order history section */
+/* Style the order history section */
 .order-history {
-    margin: 20px;
+    margin: 2px;
     padding: 20px;
     border: 1px solid #ddd;
-    border-radius: 10px;
+    border-radius: 2px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     overflow-x: auto; /* Enable horizontal scrolling */
 }
@@ -77,15 +78,21 @@
 table {
     width: 100%;
     border-collapse: collapse;
+    table-layout: fixed; /* Fix the table layout */
 }
 
 table, th, td {
     border: 1px solid #ddd;
+    text-align: left;
+    white-space: pre-line; /* Allow text to wrap within cells */
+    padding: 5px; /* Default padding */
 }
 
-th, td {
-    padding: 10px;
-    text-align: left;
+/* Set a fixed width for table cells on small screens */
+@media (max-width: 1023px) {
+    th, td {
+        width: 200px; /* Adjust the width as needed */
+    }
 }
 
 /* Center user profile on large screens */

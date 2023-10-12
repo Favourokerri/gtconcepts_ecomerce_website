@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
 from user_profile.models import Profile
+from checkout.models import Order, OrderItem
 import uuid
 
 # Create your views here.
@@ -12,7 +13,13 @@ def profile(request):
     except Profile.DoesNotExist:
         profile = Profile.objects.create(user=request.user, auth_token=str(uuid.uuid4()))
         profile.save()
-    context= {"profile":profile}
+
+    orders = Order.objects.filter(user=request.user)
+    order_items = OrderItem.objects.filter(order__user=request.user)
+    context= {"profile":profile,
+              "orders":orders,
+              "order_items":order_items
+              }
 
     return render(request, 'profile.html', context)
 

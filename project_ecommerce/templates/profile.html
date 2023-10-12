@@ -13,7 +13,7 @@
             <h2>welcome {{profile.user.first_name}}</h2>
             <p><b>Email</b>: {{profile.user.email}}</p>
             <p><b>Address</b>: {{profile.Home_address}}</p>
-            <p><b>Phone_number</b>: {{profile.location}}</p>
+            <p><b>Location</b>: {{profile.location}}</p>
             <p><b>Matriculation number (student loan only)</b>: {{profile.martriculation_number}}</p>
             <p><b>Phone_number</b>: {{profile.phone_number}}</p>
             <a href={% url 'edith_profile' %}>
@@ -24,8 +24,13 @@
     </div>
 </section>
 
+{% if order_items %}
 <section class="order-history">
     <h2>Order History</h2>
+    <p>If you payment status is still pendding  after 30mins 
+        of payment pleases send your receipt to the whatsapp number: 08070925933
+    </p>
+    {% for order_item in order_items %}
     <table>
         <thead>
             <tr>
@@ -40,17 +45,19 @@
         </thead>
         <tbody>
             <tr>
-                <td>001</td>
-                <td>2023-01-15</td>
-                <td>black gene</td>
-                <td>5</td>
-                <td>N150.00</td>
-                <td>Pending</td>
-                <td>Pending</td>
+                <td>{{order_item.order.id}}</td>
+                <td>{{ order_item.order.order_date }} </td>
+                <td>{{ order_item.product.name }}</td>
+                <td>{{ order_item.quantity }}</td>
+                <td>{{ order_item.order.total_price }}</td>
+                <td>{{ order_item.order.payment_status }}</td>
+                <td>{{ order_item.delivery_status }}</td>
             </tr>
             <!-- More order rows here -->
         </tbody>
+        {% endfor %}
     </table>
 </section>
+{% endif %}
 
 {% endblock content %}

@@ -8,7 +8,7 @@
         <form method="post" action="{% url 'checkout' %}"> {% csrf_token %}
         <h1>Checkout</h1>
         <div class="payment-details">
-            <p>Please transfer the amount to the following account:</p>
+            <to>Please transfer <strong>{{total_price_with_shipping_fee}}</strong> to the following account:</p>
 
             <div class="account-info">
                 <p>Bank Name:</p>
@@ -24,19 +24,29 @@
                 <p>Account Number:</p>
                 <p><strong>1234-5678-9012-3456</strong></p>
             </div>
+            <div class="amount-info">
+                <p>shippingfee:</p>
+                <p><strong>{{shipping_fee.fee}}</strong></p>
+            </div>
 
             <div class="amount-info">
-                <p>Amount:</p>
-                <p><strong>$100.00</strong></p>
+                <p>Item_Price:</p>
+                <p><strong>{{total_price}}</strong></p>
+            </div>
+
+            <div class="amount-info">
+                <p>total_price:</p>
+                <p><strong>{{total_price_with_shipping_fee}}</strong></p>
             </div>
         </div>
         <p style="padding-top: 10px;"><b>Note:</b> only click on the paid button if
             and only if you have sucessfully maid the payment. misuse of this button
             will lead to deactivation of your account
         </p>
-        <a href = {% url 'checkout' %}>
-            <button class="checkout-button">Proceed to Payment</button>
-        </a>
+            <!-- to ensure the link is only clickable once-->
+            <a href="{% url 'checkout' %}" onclick="if (this.getAttribute('data-clicked')) return false; this.setAttribute('data-clicked', 'true');">
+                <button class="checkout-button">I have paid</button>
+            </a>            
     </form>
     </div>
 {% endblock %}

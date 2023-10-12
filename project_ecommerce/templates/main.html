@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="{% static 'css/profile.css' %}">
     <link rel="stylesheet" href="{% static 'css/checkout.css' %}">
     <link rel="stylesheet" href="{% static 'css/shipping.css' %}">
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
     
 
     <!-- Google Font Link -->
@@ -40,7 +41,7 @@
             </button>
         </div>
         <a href="#" class="logo">
-            <img src="./assets/images/logo.svg" alt="GTs logo" width="130" height="31">
+            <img src="{% static '/images/gtlogo.jpeg'%}" alt="GTs logo" width="130" height="31">
         </a>
         <div class="header-actions">
 
@@ -152,7 +153,7 @@
         <div class="container">
             <div class="footer-brand">
                 <a href="#" class="logo">
-                    <img src="./assets/images/logo.svg" alt="Casmart logo">
+                    <img src="{% static '/images/gtlogo.jpeg'%}" alt="GTs logo" width="130" height="31">
                 </a>
                 <p class="footer-text">
                     "GT Concept: Your One-Stop E-commerce Destination

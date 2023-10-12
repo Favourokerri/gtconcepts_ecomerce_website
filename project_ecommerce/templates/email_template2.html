@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Single Blog Post</title>
+    <style>
+
+        h1 {
+            font-size: 2rem;
+        }
+
+        .blog-post {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Apply the box-shadow here */
+        }
+
+        .post-title {
+            font-size: 1.5rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .post-meta {
+            color: #888;
+            font-size: 0.9rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .post-image {
+            width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+            display: block;
+            margin: 0 auto;
+            margin-bottom: 1rem;
+        }
+
+        .post-content {
+            font-size: 1rem;
+            line-height: 1.6;
+            text-align: justify;
+        }
+
+        @media (min-width: 768px) {
+            .post-image {
+                object-fit: cover;
+                height: 100%;
+                width: 400px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="blog-post">
+        <article>
+            <h1 style="color: #FF0000;">New Order Alert</h1>
+            <li>
+                <p> You have a new order my admin <p>
+                <p>{{ orders.id }} placed by {{ orders.user }}</p>
+                <ul>
+                    {% for order_item in order_items %}
+                        <li>
+                            {{ order_item.product.name }} (Quantity: {{ order_item.quantity }})
+                            <img src="{{ order_item.product.image_url }}" alt="{{ order_item.product.name }}" />
+                        </li>
+                    {% endfor %}
+                </ul>
+            <li>
+        </article>
+    </div>
+ </div>
+</body>
+</html>
+

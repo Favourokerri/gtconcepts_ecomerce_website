@@ -15,13 +15,15 @@
 
         <div class="hero-content">
 
-          <p class="hero-subtitle">Gt concept</p>
+          <p class="hero-subtitle">GT Concepts</p>
 
           <h2 class="h2 hero-title">Place Your order from your home</h2>
 
-          <button class="btn btn-outline" >
-            <a href="{% url 'products' %}">Shop Now </a>
-          </button>
+          <a href="{% url 'products' %}">
+            <button class="btn btn-outline" >
+               Shop Now
+            </button>
+          </a>
   
         </div>
 
@@ -42,9 +44,9 @@
             </div>
 
             <div class="service-content">
-              <p class="service-item-title">Free Shipping</p>
+              <p class="service-item-title">Shipping Always on time</p>
 
-              <p class="service-item-text">On All Orders Over $599</p>
+              <p class="service-item-text">On All Orders</p>
             </div>
           </li>
 
@@ -56,7 +58,7 @@
             <div class="service-content">
               <p class="service-item-title">Easy Returns</p>
 
-              <p class="service-item-text">30 Day Returns Policy</p>
+              <p class="service-item-text">On all products</p>
             </div>
           </li>
 
@@ -149,11 +151,13 @@
           </li>
           {% endif%}
           {% endfor %}
-        </ul>z
+        </ul>
 
-        <button class="btn btn-outline" >
-          <a href="{% url 'products' %}">View all products </a>
-        </button>
+        <a href="{% url 'products' %}">
+          <button class="btn btn-outline" >
+            View all products
+          </button>
+        </a>
 
       </div>
     </section>
@@ -223,28 +227,19 @@
         <div class="newsletter-card"
           style="background-image: url({% static './images/newsletter-bg.png' %})">
 
-          <h2 class="card-title">Subscribe Newsletter</h2>
+          <h2 class="card-title">Gts concepts</h2>
 
           <p class="card-text">
-            Enter your email below to be the first to know about new collections and product launches.
+            Serving You better
           </p>
-
-          <form action="" class="card-form">
-
-            <div class="input-wrapper">
-              <ion-icon name="mail-outline"></ion-icon>
-
-              <input type="email" name="email" placeholder="Enter your email" required class="input-field">
-            </div>
-
-            <button type="submit" class="btn btn-primary w-100">
-              <span>Subscribe</span>
-
-              <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
-            </button>
-
-          </form>
-
+          <div class="input-wrapper">  
+            <a href="{% url 'products' %}">
+              <button class="btn btn-primary w-100">
+                <span>Shop Now</span>
+                <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+              </button>
+            </a>
+          </div>
         </div>
 
       </div>

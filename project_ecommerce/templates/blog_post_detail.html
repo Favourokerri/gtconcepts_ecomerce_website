@@ -1,0 +1,70 @@
+{% extends 'main.html' %}
+{% load static %}
+  
+
+{% block content %}
+    <div class="blog-post">
+            <div class="blog-post">
+                <article>
+                    <h2 class="post-title">{{ post.title }}</h2>
+                    <p class="post-meta">{{ post.date }}</p>
+                    <img src="{{ post.cover_photo }}" alt="Blog Image" class="post-image">
+                    <div class="post-content">
+                        <p>{{ post.content|safe}}</p>
+                        <!-- Add your blog content here -->
+                    </div>
+                </article>
+            </div>
+     </div>
+
+     <section class="section blog">
+        {% if blog_post %}
+          <div class="container">
+          <h2 class="h2 section-title">More Post</h2>
+          <ul class="blog-list">
+            {% for blog in blog_post %}
+              <li>
+                <div class="blog-card">
+  
+                  <figure class="card-banner">
+                    <a href="#">
+                      <img src="{% static './images/blog-1.jpg' %}" alt="Worthy Cyber Monday Fashion From Casmart"
+                        loading="lazy" width="1020" height="700" class="w-100">
+                    </a>
+                  </figure>
+  
+                  <div class="card-content">
+  
+                    <ul class="card-meta-list">
+  
+                      <li class="card-meta-item">
+                        <ion-icon name="folder-open-outline"></ion-icon>
+  
+                        <a href="#" class="card-meta-link">gt concept</a>
+                      </li>
+  
+                      <li class="card-meta-item">
+                        <ion-icon name="time-outline"></ion-icon>
+  
+                        <a href="#" class="card-meta-link">
+                          <time datetime="2021-03-31">{{ blog.date }}</time>
+                        </a>
+                      </li>
+  
+                    </ul>
+  
+                    <h3 class="h3 card-title">
+                      <a href="{% url 'blog_post_detail' primary_key=blog.id %}">{{ blog.title }}</a>
+                    </h3>
+  
+                  </div>
+  
+                </div>
+              </li>
+            {% endfor %}
+              </ul>
+            </div>
+        {% endif %}
+      </section>  
+
+{% endblock content %}

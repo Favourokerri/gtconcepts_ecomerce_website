@@ -2,6 +2,7 @@ from django.db import models
 from shopping_cart.models import Cart, CartItem
 from django.contrib.auth.models import User
 from store.models import Product
+from user_profile.models import Profile
 import uuid
 
 # Create your models here.
@@ -31,6 +32,9 @@ class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     id = models.UUIDField(default=uuid.uuid4, primary_key=True, editable=False)
     order_date = models.DateTimeField(auto_now_add=True)
+    shipping_fee= models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+    address = models.CharField(max_length=300, blank=True, null=True)
+    phone_number = models.CharField(max_length=300, blank=True, null=True)
     total_price = models.DecimalField(max_digits=10, decimal_places=2)
     order_items = models.ManyToManyField(OrderItem, related_name='orders')
     
@@ -61,4 +65,4 @@ class Order(models.Model):
     )
 
     def __str__(self):
-        return f"Order #{self.id} by {self.user.username}"
+        return f"{self.id} by {self.user}"

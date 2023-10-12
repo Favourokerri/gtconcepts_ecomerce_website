@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'users_auth',
     'user_profile',
     'checkout',
+    'ckeditor',
 ]
 
 MIDDLEWARE = [

@@ -19,7 +19,7 @@
 
                 <figure class="card-banner">
                   <a href="#">
-                    <img src="{% static './images/blog-1.jpg' %}" alt="Worthy Cyber Monday Fashion From Casmart"
+                    <img src="{{ blog.cover_photo }}" alt="Worthy Cyber Monday Fashion From Casmart"
                       loading="lazy" width="1020" height="700" class="w-100">
                   </a>
                 </figure>
@@ -45,7 +45,7 @@
                   </ul>
 
                   <h3 class="h3 card-title">
-                    <a href="#">{{ blog.title }}</a>
+                    <a href="{% url 'blog_post_detail' primary_key=blog.id %}">{{ blog.title }}</a>
                   </h3>
 
                 </div>
@@ -68,27 +68,19 @@
         <div class="newsletter-card"
           style="background-image: url({% static './images/newsletter-bg.png' %})">
 
-          <h2 class="card-title">Subscribe Newsletter</h2>
+          <h2 class="card-title">GT Concepts</h2>
 
           <p class="card-text">
-            Enter your email below to be the first to know about new collections and product launches.
+            serving You better
           </p>
-
-          <form action="" class="card-form">
-
-            <div class="input-wrapper">
-              <ion-icon name="mail-outline"></ion-icon>
-
-              <input type="email" name="email" placeholder="Enter your email" required class="input-field">
-            </div>
-
-            <button type="submit" class="btn btn-primary w-100">
-              <span>Subscribe</span>
-
-              <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
-            </button>
-
-          </form>
+          <div class="input-wrapper">  
+            <a href="{% url 'products' %}">
+              <button class="btn btn-primary w-100">
+                <span>Shop Now</span>
+                <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+              </button>
+            </a>
+          </div>
 
         </div>
 
