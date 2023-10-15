@@ -1,0 +1,50 @@
+.search-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 80px;
+    margin: 20px auto;
+    max-width: 500px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.search-container input[type="text"] {
+    width: 80%;
+    padding: 10px;
+    border: none;
+    outline: none;
+    float: left;
+    background: #f2f2f2;
+}
+
+.search-container button {
+    float: left;
+    width: 20%;
+    padding: 10px;
+    background: hsl(148, 45%, 58%);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.search-container button:hover {
+    background: hsl(148, 63%, 70%);
+}
+
+/* Add media queries for responsiveness */
+@media screen and (max-width: 600px) {
+    .search-container {
+        margin-top: 50px;
+        width: 90%;
+    }
+
+    .search-container input[type="text"] {
+        width: 70%;
+    }
+
+    .search-container button {
+        width: 30%;
+    }
+}

@@ -1,0 +1,49 @@
+
+h1 {
+    font-size: 2rem;
+}
+
+p {
+    font-size: 18px;
+    
+}
+
+.contact-cards {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #f9f9f9; /* Slightly darker background */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* More pronounced box shadow */
+    border-radius: 8px; /* Slightly increased border radius */
+    border: 2px solid #ccc; /* More pronounced border */
+}
+
+h2 {
+    font-size: 1.5rem;
+    margin-bottom: 3px;
+}
+
+.contact-card h3, .contact-card p {
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.contact-card {
+    text-align: center;
+    border: 2px solid #555; /* Darker and more pronounced border */
+    padding: 1.5rem; /* Increased padding */
+    border-radius: 8px; /* Slightly increased border radius */
+    margin-bottom: 1rem;
+    background-color: #f9f9f9; /* Slightly darker background */
+}
+
+.contact-card img {
+    width: 120px; /* Slightly increased image size */
+    height: 120px; /* Slightly increased image size */
+    border-radius: 50%;
+    margin: 0 auto;
+}
+
+.contact-card i {
+    margin-right: 8px; /* Slightly increased margin */
+}

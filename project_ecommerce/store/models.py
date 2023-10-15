@@ -4,8 +4,6 @@ from django.urls import reverse
 # Create your models here.
 class Category(models.Model):
     name = models.CharField(max_length=50)
-    slug = models.SlugField(max_length=50, unique=True,
-                            help_text="Unique value for product page URL, created from name")
     created_at = models.DateTimeField(auto_now_add=True) 
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -17,9 +15,7 @@ class Category(models.Model):
 
 
 class Product(models.Model):
-   name = models.CharField(max_length=255, unique=True) 
-   slug = models.SlugField(max_length=255, unique=True,
-                           help_text='Unique value for product page URL, created from name.')
+   name = models.CharField(max_length=255, unique=False) 
    categories = models.ManyToManyField(Category) 
    price = models.DecimalField(max_digits=9,decimal_places=2)
    image_url = models.URLField(null=True, help_text="attach image url from cloudinary")

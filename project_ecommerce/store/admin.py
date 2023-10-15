@@ -9,13 +9,11 @@ class ProductAdmin(admin.ModelAdmin):
    list_display = ('name', 'price', 'avalibility', 'created_at', 'updated_at',)
    list_filter = ('categories', 'avalibility', 'name','created_at', 'updated_at', 'price')
    ordering = ['-created_at']
-   prepopulated_fields = {'slug' : ('name',)}
    search_fields = ('name',)  
 
 class CategoryAdmin(admin.ModelAdmin):
    list_display = ('name', 'created_at', 'updated_at',)
    ordering = ['name']
-   prepopulated_fields = {'slug' : ('name',)}
 
 admin.site.register(Category, CategoryAdmin) 
 admin.site.register(Product, ProductAdmin)

@@ -63,4 +63,4 @@ def cart(request):
     }
 
     #note getting number of cartitems is in the context_processor file
-    return render(request, "cart.html", context)
+    return render(request, "main/cart.html", context)

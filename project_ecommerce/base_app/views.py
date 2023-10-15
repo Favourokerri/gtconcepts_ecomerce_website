@@ -16,4 +16,11 @@ def index(request):
     context = {'featured_products': featured_products,
                'featured_blogs': featured_blogs}
 
-    return render(request, 'index.html', context)
+    return render(request, 'main/index.html', context)
+
+
+def custom_404_view(request, exception):
+    return render(request, 'error/404.html', status=404)
+
+def custom_500_view(request, exception):
+    return render(request, 'error/500.html', status=500)

@@ -5,6 +5,8 @@ from user_profile.models import Profile, ShippingFee
 from django.contrib import messages
 from .mails import send_mail_after_order
 from .mails import send_mail_after_order_to_admin
+from company_details.models import Account_detail
+import uuid
 
 def shipping_details(request):
     shippingFees = ShippingFee.objects.all()
@@ -29,12 +31,13 @@ def shipping_details(request):
             user_profile.Home_address = request.POST['street_address']
             user_profile.save()  # Save the updated user profile
 
-    return render(request, 'shipping_details.html', context)
+    return render(request, 'checkout/shipping_details.html', context)
 
 def checkout(request):
-    """ view fo checkout"""
+    """ view for checkout"""
     user_profile = Profile.objects.get(user=request.user)
     cart = Cart.objects.get(user=request.user, completed=False)
+    admin_bank_account = Account_detail.objects.filter(is_active=True).first()
     selected_location = user_profile.location
     address = user_profile.Home_address
     number = user_profile.phone_number
@@ -42,14 +45,29 @@ def checkout(request):
     total_price = sum(item.total_price() for item in cart.cartitems.all())
     total_price_with_shipping_fee = total_price + shipping_fee.fee
 
+    # Check if the 'description' (for transfer) is already stored in the session
+    # this block is to ensure that description stays consistent in the checkout view and admin site
+    if 'description' in request.session:
+        description = request.session['description']
+    else:
+        # If not, generate a new random 'description' and store it in the session
+        description = Order.generate_random_string()
+        request.session['description'] = description
+
+    
     if request.method == "POST":
         """ Placing order"""
         orders = Order.objects.create(user=request.user,
                                       shipping_fee=shipping_fee.fee,
                                       address=address,
                                       phone_number=number,
-                                      total_price=total_price_with_shipping_fee,)
-
+                                      total_price=total_price_with_shipping_fee,
+                                      description=description)
+        
+        #delete session in order to create a new random string
+        del request.session['description']
+        request.session.save()
+        
         # Create OrderItem instances for each item in the cart and associate them with the order
         order_items = [] # for sending of mails
         for cart_item in cart.cartitems.all():
@@ -71,9 +89,11 @@ def checkout(request):
         send_mail_after_order_to_admin(request, request.user, orders, order_items)
         return redirect('profile')
     
-        
-    context = {"total_price": total_price,
-                   "shipping_fee": shipping_fee,
-                   "total_price_with_shipping_fee":total_price_with_shipping_fee
-              }
-    return render(request, 'checkout.html', context)
+    context = {
+        "total_price": total_price,
+        "shipping_fee": shipping_fee,
+        "total_price_with_shipping_fee": total_price_with_shipping_fee,
+        "description": description,
+        "admin_bank_account": admin_bank_account,
+    }
+    return render(request, 'checkout/checkout.html', context)

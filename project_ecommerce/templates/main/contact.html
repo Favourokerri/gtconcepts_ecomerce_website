@@ -1,0 +1,19 @@
+{% extends 'main.html' %}
+{% load static %}
+  
+
+{% block content %}
+
+    <section class="contact-cards">
+        <h2>Our Team</h2>
+        <p> feel free to contact any of us at anytime of the day with what ever means you prefer</P>
+        {% for contatct in contacts %}
+            <div class="contact-card">
+                <h3>{{ contatct.name }}</h3>
+                <p><b>email:</b> {{ contatct.email }}</p>
+                <p><i class="fa-brands fa-whatsapp style="color:green;""></i><b>WhatsApp:</b> {{ contatct.whatsapp_number }}</p>
+                <p><b>Position:<b> {{ contatct.position }} </p>
+            </div>
+        {% endfor %}
+    </section>
+{% endblock content %}

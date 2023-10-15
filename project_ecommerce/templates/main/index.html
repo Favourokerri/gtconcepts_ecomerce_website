@@ -74,6 +74,7 @@
             </div>
           </li>
 
+        <a style="color:black"href="{% url 'contact_us' %}">
           <li class="service-item">
             <div class="service-item-icon">
               <img src="{% static './images/service-icon-4.svg' %}" alt="Service icon">
@@ -81,10 +82,10 @@
 
             <div class="service-content">
               <p class="service-item-title">Special Support</p>
-
               <p class="service-item-text">24/7 Dedicated Support</p>
             </div>
           </li>
+        </a>
 
         </ul>
 
@@ -178,8 +179,11 @@
 
                 <figure class="card-banner">
                   <a href="#">
-                    <img src="{% static './images/blog-1.jpg' %}" alt="Worthy Cyber Monday Fashion From Casmart"
-                      loading="lazy" width="1020" height="700" class="w-100">
+                    {% if blog.cover_photo %}
+                    <img src="{{ blog.cover_photo }}" alt="gt imge"loading="lazy" width="1020" height="700" class="w-100">
+                    {% else %}
+                    <img src="{% static '/images/default_blog.jpeg'%}" alt="gt"loading="lazy" width="1020" height="700" class="w-100">
+                    {% endif %}
                   </a>
                 </figure>
 
@@ -204,7 +208,7 @@
                   </ul>
 
                   <h3 class="h3 card-title">
-                    <a href="#">{{ blog.title }}</a>
+                    <a href="{% url 'blog_post_detail' primary_key=blog.id %}">{{ blog.title }}</a>
                   </h3>
 
                 </div>

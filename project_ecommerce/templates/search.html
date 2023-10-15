@@ -1,0 +1,77 @@
+{% extends 'main.html' %}
+{% load static %}
+  
+{% block content %}
+{% include 'messages.html' %}
+<form action="" method="GET">
+    <div class="search-container">
+        <select name="category" onchange="this.form.submit()">
+            <option value="">category</option>
+             {% for category in categories %}
+                <option value="{{ category.name }}">{{ category.name }}</option>
+            {% endfor %}
+        </select>
+        <input type="text" name="query" placeholder="Search..." value="{{ request.GET.query }}">
+        <button type="submit"><i class="fa fa-search"></i></button>
+    </div>
+</form>
+
+{% if results  %}
+        <section class="section product">
+            <div class="container">
+            <ul class="product-list">
+            {% for product in results %}
+                <li>
+                <div class="product-card">
+
+                    <figure class="card-banner">
+
+                        <img src="{{ product.image_url }}" alt="Varsi Leather Bag" loading="lazy" width="800"
+                        height="1034" class="w-100">
+
+                    <div class="card-badge green"> Hot </div>
+
+                    <div class="card-actions">
+                        
+                        <!--disaple button base on avalibility status-->
+                        {% if product.avalibility == "i" %}
+                        <button value={{ product.id }} class="card-action-btn cart-btn">
+                        <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
+                            Add to Cart
+                        </button>
+                    {% else %}
+                        <button type="button" disabled class="card-action-btn cart-btn">
+                        <i class="fa-solid fa-calendar-xmark aria-hidden="true""></i>
+                        Opps out of stock
+                        </button>                
+                    {% endif %}
+
+                        <button class="card-action-btn" aria-label="Add to Wishlist">
+                        <ion-icon name="heart-outline"></ion-icon>
+                        </button>
+
+                    </div>
+
+                    </figure>
+
+                    <div class="card-content">
+                    <h3 class="h4 card-title">
+                        <a href="#">{{ product.name }}</a>
+                    </h3>
+
+                    <div class="card-price">
+                        <data>N{{ product.price}}</data>
+                    </div>
+                    </div>
+
+                </div>
+                </li>
+            {% endfor %}
+            </ul>
+
+            </div>
+        </section>
+{% else %}
+    <p style="text-align: center; margin: 0 auto;">No search results</p>
+{% endif %}
+{% endblock content %}

@@ -6,4 +6,4 @@ def products(request):
     products = Product.objects.all()
     category = Category.objects.all()
     context = {'products': products, 'categories': category}
-    return render(request, 'shop.html', context)
+    return render(request, 'main/shop.html', context)

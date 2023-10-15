@@ -26,4 +26,9 @@ urlpatterns = [
     path('user/', include('users_auth.urls')),
     path('profile/', include('user_profile.urls')),
     path('checkout/', include('checkout.urls')),
+    path('info/', include('company_details.urls')),
+    path('query/', include('search.urls')),
 ]
+
+handler404 = 'base_app.views.custom_404_view'
+handler505 = 'base_app.views.custom_500_view'

@@ -4,10 +4,13 @@ from users_auth.validtion import validate_password
 from user_profile.models import Profile
 from django.contrib.auth.hashers import make_password
 from django.contrib import messages
-from django.db import IntegrityError
+from django.db import IntegrityError, OperationalError
 import uuid
 from django.core.mail import send_mail
 from django.conf import settings
+from django.urls import reverse_lazy
+from django.contrib.auth.views import PasswordResetView
+from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
@@ -44,13 +47,15 @@ def sign_up(request):
                 return redirect('token_send')
             except IntegrityError: # user alredy exits
                 messages.error(request, 'This user already exists')
+            except OperationalError as e:
+                messages.error(request, "please input only vald characters no emojis")
 
     
-    return render(request, 'sign-up.html')
+    return render(request, 'registration/sign-up.html')
 
 def token_send(request):
     """ view for our token page """
-    return render(request, 'token.html')
+    return render(request, 'registration/token.html')
 
 def resend_verification(request):
     """ resends verification if user dose not see it at first"""
@@ -63,8 +68,10 @@ def resend_verification(request):
         except Profile.DoesNotExist:
             messages.warning(request, 'this email is not registered. please register')
             return redirect('signup')
-        
-    return render(request, 'resend_verification.html')
+        except OperationalError as e:
+            messages.error(request, "please input only vald characters no emojis")
+
+    return render(request, 'registration/resend_verification.html')
 
 def verify_account(request, auth_token):
     """ for verification of account"""
@@ -83,25 +90,41 @@ def log_in(request):
         password = request.POST['password']
         
         #get profie details to check if user is verified
-        user = authenticate(username=username, password=password)
-        if user is not None:
-            try:
-                profile = Profile.objects.get(user=user)
-            except Profile.DoesNotExist:
-                profile = Profile.objects.create(user=user, auth_token=str(uuid.uuid4()))
-                profile.save()
-            if profile.is_verified:
-                login(request, user)
-                messages.success(request, "login successfull")
-                return redirect('index')
+        try:
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                try:
+                    profile = Profile.objects.get(user=user)
+                except Profile.DoesNotExist:
+                    profile = Profile.objects.create(user=user, auth_token=str(uuid.uuid4()))
+                    profile.save()
+                if profile.is_verified:
+                    login(request, user)
+                    messages.success(request, "login successfull")
+                    return redirect('index')
+                else:
+                    messages.warning(request, 'account must be verified before login')
+                    return redirect('token_send')
             else:
-                messages.warning(request, 'account must be verified before login')
-                return redirect('token_send')
-        else:
-            messages.error(request, 'usernane and or password incorrect')
-            return redirect('login')
+                messages.error(request, 'usernane and or password incorrect')
+                return redirect('login')
+        except OperationalError as e:
+            messages.error(request, 'pleases input only valid characters no emojis')
         
-    return render(request, 'login.html')
+    return render(request, 'registration/login.html')
+
+class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
+    try:
+        template_name = 'reset_password/password_reset.html'
+        email_template_name = 'reset_password/password_reset_email.html'
+        subject_template_name = 'registration/password_reset_subject.txt'  # Change this line
+        success_message = "We've emailed you instructions for setting your password, " \
+                        "if an account exists with the email you entered. You should receive them shortly." \
+                        " If you don't receive an email, " \
+                        "please make sure you've entered the address you registered with, and check your spam folder."
+        success_url = reverse_lazy('index')
+    except OperationalError as e:
+            redirect('login')
 
 def log_out(request):
     """ handel logout"""

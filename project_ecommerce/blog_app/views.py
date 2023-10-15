@@ -8,7 +8,7 @@ def blog(request):
     """ view for blog """
     blog_post = Blog_Post.objects.all()
     context = {"blog_post": blog_post}
-    return render(request, 'blog.html', context)
+    return render(request, 'blog/blog.html', context)
 
 def blog_post_detail(request, primary_key):
      post = get_object_or_404(Blog_Post, id=int(primary_key))
@@ -16,4 +16,4 @@ def blog_post_detail(request, primary_key):
      context = {"blog_post": blog_post,
                 "post": post
                 }
-     return render(request, 'blog_post_detail.html', context)
+     return render(request, 'blog/blog_post_detail.html', context)

@@ -8,7 +8,13 @@
                 <article>
                     <h2 class="post-title">{{ post.title }}</h2>
                     <p class="post-meta">{{ post.date }}</p>
-                    <img src="{{ post.cover_photo }}" alt="Blog Image" class="post-image">
+                    {% if post.cover_photo %}
+                      <img src="{{ post.cover_photo }}" alt="Blog Image" class="post-image">
+                    {% else %}
+                      <img src="{% static '/images/default_blog.jpeg'%}" alt="gt" class='post-image'>
+                    {% endif %}
+                      </a>
+                    </figure>
                     <div class="post-content">
                         <p>{{ post.content|safe}}</p>
                         <!-- Add your blog content here -->
@@ -28,8 +34,11 @@
   
                   <figure class="card-banner">
                     <a href="#">
-                      <img src="{% static './images/blog-1.jpg' %}" alt="Worthy Cyber Monday Fashion From Casmart"
-                        loading="lazy" width="1020" height="700" class="w-100">
+                      {% if blog.cover_photo %}
+                      <img src="{{ blog.cover_photo }}" alt="gt imge"loading="lazy" width="1020" height="700" class="w-100">
+                      {% else %}
+                      <img src="{% static '/images/default_blog.jpeg'%}" alt="gt"loading="lazy" width="1020" height="700" class="w-100">
+                      {% endif %}
                     </a>
                   </figure>
   

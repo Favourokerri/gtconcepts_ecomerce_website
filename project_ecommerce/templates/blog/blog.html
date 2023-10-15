@@ -19,9 +19,14 @@
 
                 <figure class="card-banner">
                   <a href="#">
-                    <img src="{{ blog.cover_photo }}" alt="Worthy Cyber Monday Fashion From Casmart"
-                      loading="lazy" width="1020" height="700" class="w-100">
-                  </a>
+                    {% if blog.cover_photo %}
+                      <img src="{{ blog.cover_photo }}" alt="gt image"
+                        loading="lazy" width="1020" height="700" class="w-100">
+                    {% else %}
+                      <img src="{% static '/images/default_blog.jpeg'%}" alt="gt image"
+                        loading="lazy" width="1020" height="700" class="w-100">
+                    {% endif %}
+                    </a>
                 </figure>
 
                 <div class="card-content">

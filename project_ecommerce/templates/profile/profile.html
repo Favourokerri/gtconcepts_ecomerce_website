@@ -19,7 +19,6 @@
             <a href={% url 'edith_profile' %}>
                 <button class="edit-button">Edit Profile</button>
             </a>
-                <button class="delete-button">Delete Account</button>
         </div>
     </div>
 </section>
@@ -27,8 +26,8 @@
 {% if order_items %}
 <section class="order-history">
     <h2>Order History</h2>
-    <p>If you payment status is still pendding  after 30mins 
-        of payment pleases send your receipt to the whatsapp number: 08070925933
+    <p>If your payment status is still pendding  after 30mins 
+        of payment pleases send your receipt to the whatsapp number: {{ contact_details.whatsapp_number }}
     </p>
     {% for order_item in order_items %}
     <table>

@@ -1,0 +1,19 @@
+{% extends 'main.html' %}
+{% load static %}
+  
+
+{% block content %}
+    <div class="blog-post">
+            <div class="blog-post">
+                <article>
+                    <h2 class="post-title">Terms and conditions</h2>
+                    <img src="{% static '/images/terms&conditions.jpg'%}" alt="Blog Image" class="post-image">
+                    <div class="post-content">
+                        <p>{{ terms.content|safe}}</p>
+                        <!-- Add your blog content here -->
+                    </div>
+                </article>
+            </div>
+        </div>
+
+{% endblock content %}

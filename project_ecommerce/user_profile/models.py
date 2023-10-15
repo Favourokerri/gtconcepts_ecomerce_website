@@ -8,7 +8,7 @@ import uuid
 # Create your models here.
 
 class ShippingFee(models.Model):
-    location = models.CharField(max_length=300, unique=True)
+    location = models.CharField(max_length=200, unique=True)
     fee = models.DecimalField(max_digits=10, decimal_places=2)
 
     def __str__(self):

@@ -1,0 +1,11 @@
+{% extends 'main.html' %}
+{% load static %}
+  
+
+{% block content %}
+<div class="form-container">
+    <h1>Password reset completed please proceed to login</h1>
+    <a href={% url 'login' %}>log in </a>
+   
+</div>
+{% endblock content %}

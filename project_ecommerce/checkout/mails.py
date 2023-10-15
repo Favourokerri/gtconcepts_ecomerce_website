@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 
 def send_mail_after_order(request, email, order_items):
     subject = "Your orders"
-    html_content = render_to_string('email_template1.html', {'order_items': order_items})
+    html_content = render_to_string('email/email_template1.html', {'order_items': order_items})
     msg = EmailMultiAlternatives(subject, 'New order notification', settings.EMAIL_HOST_USER, [email])
     msg.attach_alternative(html_content, "text/html")
     msg.send()
@@ -19,7 +19,7 @@ def send_mail_after_order_to_admin(request, email, orders, order_items):
         context = {'orders': orders,
                    'order_items': order_items
                    }
-        html_content = render_to_string('email_template2.html', context)
+        html_content = render_to_string('email/email_template2.html', context)
         
         msg = EmailMultiAlternatives(subject, 'New order notification', settings.EMAIL_HOST_USER, [admin.email])
         msg.attach_alternative(html_content, "text/html")
