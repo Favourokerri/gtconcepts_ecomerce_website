@@ -17,7 +17,7 @@ from django.contrib.auth import authenticate, login, logout
 def send_mail_after_registration(email, auth_token):
     """ function that handels email for verifying accounts"""
     subject = "welcome to Gt concept. verify account to log in"
-    message = f'Hi click, or paste this link to verify your account http://192.168.43.79:8000/user/verify/{auth_token}'
+    message = f'Hi click, or paste this link to verify your account https://gtsplacest3.onrender.com/user/verify/{auth_token}'
     email_from = settings.EMAIL_HOST_USER
     recipient_list = [email]
     send_mail(subject, message , email_from ,recipient_list)
