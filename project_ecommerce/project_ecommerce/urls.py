@@ -16,6 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
     path('admin/', admin.site.urls, name="admin"),
@@ -30,5 +31,6 @@ urlpatterns = [
     path('query/', include('search.urls')),
 ]
 
+urlpatterns += staticfiles_urlpatterns()
 handler404 = 'base_app.views.custom_404_view'
 handler505 = 'base_app.views.custom_500_view'
