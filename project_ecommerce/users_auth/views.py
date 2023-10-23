@@ -39,7 +39,7 @@ def sign_up(request):
         # Check if password is valid
         if validate_password(request, password, confirm_password):
             try:
-                user_obj = User.objects.create(username=email, email=email, first_name=first_name, password=password)
+                user_obj = User.objects.create(username=email, email=email, first_name=first_name, password=hashed_password)
                 profile_obj = Profile.objects.create(user=user_obj, auth_token=str(uuid.uuid4()))
                 profile_obj.save()
                 send_mail_after_registration(email, profile_obj.auth_token)
